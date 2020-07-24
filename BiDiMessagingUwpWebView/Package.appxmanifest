@@ -40,6 +40,9 @@
         <uap:DefaultTile Wide310x150Logo="Assets\Wide310x150Logo.png"/>
         <uap:SplashScreen Image="Assets\SplashScreen.png" />
       </uap:VisualElements>
+      <uap:ApplicationContentUriRules>
+        <uap:Rule Match="ms-appx-web:///Assets/Page.html" WindowsRuntimeAccess="all" Type="include"/>
+      </uap:ApplicationContentUriRules>
     </Application>
   </Applications>
 
