@@ -6,9 +6,75 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
+    RequestedTheme="Dark"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
-
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <WebView
+            Name="WebView"
+            Grid.Row="0"
+            Source="ms-appx-web:///Assets/Page.html"
+            NavigationStarting="WebView_NavigationStarting" />
+        <Grid Grid.Row="1" Background="Gray">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <TextBlock><Run FontFamily="Segoe MDL2 Assets" Text="&#xF0AD;" /> <Run Text="WebView HTML" /> <Run FontFamily="Segoe MDL2 Assets" Text="&#xF0AD;" /></TextBlock>
+                <Rectangle Width="30" />
+                <TextBlock Foreground="Black"><Run FontFamily="Segoe MDL2 Assets" Text="&#xF0AE;" /> <Run Text="UWP XAML " /> <Run FontFamily="Segoe MDL2 Assets" Text="&#xF0AE;" /></TextBlock>
+            </StackPanel>
+        </Grid>
+        <StackPanel Grid.Row="2" VerticalAlignment="Center" Background="Black">
+            <Button
+                x:Name="TextBlock"
+                HorizontalAlignment="Center"
+                Margin="5"
+                FontWeight="Bold"
+                FontSize="100"
+                FontFamily="Curlz MT"
+                Click="TextBlock_Click"
+                Content="Click #0" />
+            <StackPanel
+                Orientation="Horizontal"
+                HorizontalAlignment="Center"
+                Margin="5">
+                <Button
+                    Content="Send Message"
+                    Margin="5 0"
+                    FontWeight="Bold"
+                    FontSize="50"
+                    FontFamily="Curlz MT"
+                    Click="Button_Click" />
+                <TextBox
+                    x:Name="ToWeb"
+                    Width="500"
+                    PlaceholderText="Enter message text"
+                    Margin="5 0"
+                    FontWeight="Bold"
+                    FontSize="50"
+                    FontFamily="Curlz MT" />
+            </StackPanel>
+            <StackPanel
+                Orientation="Horizontal"
+                HorizontalAlignment="Center"
+                Margin="5">
+                <TextBlock
+                    Text="Received message: "
+                    FontWeight="Bold"
+                    FontSize="50"
+                    FontFamily="Curlz MT" />
+                <TextBox
+                    x:Name="FromWeb"
+                    Width="500"
+                    IsEnabled="False"
+                    Margin="5 0"
+                    FontWeight="Bold"
+                    FontSize="50"
+                    FontFamily="Curlz MT" />
+            </StackPanel>
+        </StackPanel>
     </Grid>
 </Page>

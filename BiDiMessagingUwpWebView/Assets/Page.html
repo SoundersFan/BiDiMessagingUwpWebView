@@ -1,0 +1,48 @@
+﻿<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Bidirectional Communication: WebView &lt;==&gt; UWP</title>
+</head>
+<body>
+    <script type="text/javascript">
+        var clicks = 0;
+        function incrementWebCounter() {
+            clicks += 1;
+            document.getElementById("increment").innerHTML = "Click #" + clicks;
+        };
+        function setWebMessage(message) {
+            document.getElementById("webMessage").value = message;
+        };
+        function onClick() {
+            incrementWebCounter();
+            try {
+                window.host.incrementHostCount();
+            } catch (error) {
+                document.getElementById("errText").innerHTML = "ERROR: This is supposed to be hosted in a UWP app WebView.";
+            }
+        };
+        function onSendMessage() {
+            try {
+                messageText = document.getElementById("message").value;
+                window.host.sendHostMessage(messageText);
+            } catch (error) {
+                document.getElementById("errText").innerHTML = "ERROR: This is supposed to be hosted in a UWP app WebView.";
+            }
+        };
+    </script>
+    <a href="https://github.com/SoundersFan/BiDiMessagingUwpWebView">Link to source</a>
+    <div style="text-align:center;">
+        <p>Bidirectional Communication: WebView &lt;==&gt; UWP</p>
+        <hr />
+        <p>Click below to call into hosting UWP app and increment counter there.</p>
+        <button id="increment" type="button" onClick="onClick()">Click #0</button>
+        <hr />
+        <p>Type message and click button to send message to app.</p>
+        <button id="sendMessage" onclick="onSendMessage()">Send Message</button> <input type="text" id="message" placeholder="Enter message text" />
+        <p />
+        <div>Received message: <input type="text" id="webMessage" disabled /></div>
+        <p id="errText" style="color:red" />
+    </div>
+</body>
+</html>
